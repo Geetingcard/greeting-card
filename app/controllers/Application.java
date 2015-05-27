@@ -43,7 +43,7 @@ public class Application extends Controller {
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
 			Map<String, String[]> params = request().body().asFormUrlEncoded();
 			Card newCard = new Card();
-			newCard.card_id=Integer.parseInt(params.get("card_id")[0]);
+			newCard.card_id=Card.find.where().orderBy("card_id").findRowCount()+1;
 			newCard.get_staff_id=Integer.parseInt(params.get("get_staff_id")[0]);
 			newCard.send_staff_id=Integer.parseInt(params.get("send_staff_id")[0]);
 			newCard.point=Integer.parseInt(params.get("point")[0]);
