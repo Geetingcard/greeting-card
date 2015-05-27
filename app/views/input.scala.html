@@ -1,0 +1,14 @@
+@(idnum:Integer)
+<form action="@routes.Application.createCard()" method="POST">>
+    <p>
+        <input type="hidden" name="card_id" value=@idnum>
+    	get_staff_id: <input type="text" name="get_staff_id" />
+    	send_staff_id: <input type="text" name="send_staff_id" />
+    	point: <input type="text" name="point" />
+    	help_detail: <input type="text" name="help_detail" />
+    	thanks_word: <input type="text" name="thanks_word" />
+    	helped_date: <input type="text" name="helped_date" />
+    	category_id: <input type="text" name="category_id" />
+    </p>
+    <input type="submit" value="Create" />
+</form>
