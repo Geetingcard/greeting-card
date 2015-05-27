@@ -1,13 +1,22 @@
 package controllers;
-import java.text.SimpleDateFormat;
+import play.*;
+import play.mvc.*;
+import play.data.*;
+
+
 import java.util.Arrays;
+import java.text.SimpleDateFormat;
+import models.Card;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
-
-import models.Card;
+import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
-import views.html.index;
+
+import views.html.*;
+
+import models.*;
 public class Application extends Controller {
 
 	public static Result index() {
@@ -16,8 +25,28 @@ public class Application extends Controller {
 
 	public static Result login() {
 		List<String> taskList = Arrays.asList("foo", "bar", "baz");
-		return ok(views.html.login.render());
+		return ok(login.render(Form.form(User.class)));
 	}
+
+	public static Result authenticate() {
+		Form<User> loginForm = Form.form(User.class).bindFromRequest();
+		if (loginForm.hasErrors()) {
+			return badRequest(login.render(loginForm));
+		}
+		session().clear();
+		session("name", loginForm.get().name);
+		return redirect(routes.Application.index());
+	}
+
+	public static Result addUser() {
+		User user = User.find.where().eq("name", "admin").findUnique();
+		if (user == null) {
+			User.create("admin", "password123");
+		}
+		return redirect(routes.Application.login());
+	}
+
+	public static Result logout() {
 
 	public static Result input() {
 		//    	List<Card> cardList = Card.find.all();
