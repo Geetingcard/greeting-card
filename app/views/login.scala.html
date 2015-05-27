@@ -1,0 +1,36 @@
+@(loginForm: Form[User])
+
+@import helper._
+
+<!DOCTYPE html>
+<html lang="jp">
+<head>
+  <meta charset="UTF-8">
+  <title>Login</title>
+</head>
+<body>
+  @form(routes.Application.authenticate) {
+    <h1>Sign in</h1>
+    @if(loginForm.hasGlobalErrors) {
+    <p class="error">
+        @loginForm.globalError.message
+    </p>
+    }
+    @inputText(loginForm("name"))
+    @inputPassword(loginForm("password"))
+    <p>
+      <button type="submit">Login</button>
+    </p>
+  }
+</body>
+</html>
+
+ <p>
+    <a href="@routes.Application.addUser">create test user</a>
+    <dl>
+      <dt>name</dt>
+      <dd>admin</dd>
+      <dt>password</dt>
+      <dd>password123</dd>
+    </dl>
+  </p>
