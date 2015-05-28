@@ -19,12 +19,12 @@ import views.html.*;
 import models.*;
 public class Application extends Controller {
 
+	@Security.Authenticated(Secured.class)
 	public static Result index() {
-		return ok(index.render("Your new application is ready."));
+		return ok(index.render());
 	}
 
 	public static Result login() {
-		List<String> taskList = Arrays.asList("foo", "bar", "baz");
 		return ok(login.render(Form.form(User.class)));
 	}
 
@@ -47,6 +47,10 @@ public class Application extends Controller {
 	}
 
 	public static Result logout() {
+		session().clear();
+		return redirect(routes.Application.login());
+
+	}
 
 	public static Result input() {
 		//    	List<Card> cardList = Card.find.all();
