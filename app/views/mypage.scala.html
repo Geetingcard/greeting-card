@@ -1,0 +1,142 @@
+@cardList:List[Card])
+ @common("マイページ") {
+ <h1>@</h1>
+<h1 align="center">マイページ</h1>
+		<form>
+		<div align="right">
+			<table border="0" style="padding:0% 20% 0% 0%;">
+
+					<tr>
+						<td>
+						<a href="kansya_input_2.html">入力画面</a></td>
+						<td><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+						</td>
+						<td>
+						<a href="pass_change.html">パスワード変更画面</a>
+						</td><td><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+						</td>
+						<td>
+							<a href="">管理者メニュー</a>
+							</td><td><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+						</td>
+						<td>
+							<a href="login.html">ログアウト</a>
+
+						</td>
+					</tr>
+			</table>
+		</div>
+		</form>
+
+		<div align="center">
+		@if(cardList.isEmpty()) {
+         感謝カード は一件もありません
+     } else {
+     <h3>代表事例</h3>
+     <table border="2">
+     <tr>
+     <th rowspan="2">
+    	日付
+     </th>
+     <th colspan="2">
+     	感謝された人
+     </th>
+     <th rowspan="2">
+    	感謝内容
+     </th>
+     <th colspan="2">感謝する人</th>
+     <th rowspan="2">詳細</th>
+     </tr>
+     <tr>
+     <th>部署</th>
+     <th>名前</th>
+     <th>部署</th>
+     <th>名前</th>
+     </tr>
+        @for(card <- cardList) {
+        <tr>
+         <td>@card.helped_date</td>
+         <td>@card.get_staff_id</td>
+         <td>@card.get_staff_id</td>
+         <td>@card.help_detail</td>
+         <td>@card.point</td>
+         <td>@card.send_staff_id</td>
+         <td>@card.send_staff_id</td>
+        </tr>
+        }
+        </table>
+
+        <br /><br />
+
+        <h3>○○さんへの感謝カード</h3>
+     <table border="2">
+     <tr>
+     <th rowspan="2">
+    	日付
+     </th>
+     <th colspan="2">
+     	感謝された人
+     </th>
+     <th rowspan="2">
+    	感謝内容
+     </th>
+     <th colspan="2">感謝する人</th>
+     <th rowspan="2">詳細</th>
+     </tr>
+     <tr>
+     <th>部署</th>
+     <th>名前</th>
+     <th>部署</th>
+     <th>名前</th>
+     </tr>
+        @for(card <- cardList) {
+        <tr>
+         <td>@card.helped_date</td>
+         <td>@card.get_staff_id</td>
+         <td>@card.get_staff_id</td>
+         <td>@card.help_detail</td>
+         <td>@card.point</td>
+         <td>@card.send_staff_id</td>
+         <td>@card.send_staff_id</td>
+        </tr>
+        }
+        </table>
+
+        <br /><br />
+
+        <h3>最新の感謝カード</h3>
+     <table border="2">
+     <tr>
+     <th rowspan="2">
+    	日付
+     </th>
+     <th colspan="2">
+     	感謝された人
+     </th>
+     <th rowspan="2">
+    	感謝内容
+     </th>
+     <th colspan="2">感謝する人</th>
+     <th rowspan="2">詳細</th>
+     </tr>
+     <tr>
+     <th>部署</th>
+     <th>名前</th>
+     <th>部署</th>
+     <th>名前</th>
+     </tr>
+        @for(card <- cardList) {
+        <tr>
+         <td>@card.helped_date</td>
+         <td>@card.get_staff_id</td>
+         <td>@card.get_staff_id</td>
+         <td>@card.help_detail</td>
+         <td>@card.point</td>
+         <td>@card.send_staff_id</td>
+         <td>@card.send_staff_id</td>
+        </tr>
+        }
+        </table>
+     }
+		</div>
+}

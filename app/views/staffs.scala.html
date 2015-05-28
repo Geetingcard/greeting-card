@@ -1,0 +1,54 @@
+@(staffList:List[Staff])
+ @common("今もってるスタッフ") {
+     <h1>スタッフ一覧</h1>
+        <table border="1" width="1000" cellspacing="0" cellpadding="5" >
+         <tr><th align="left">ユーザ登録</th></tr>
+         <tr><td><form action="index.html" method="POST">
+
+         社員id: <input type="text" id="id" name="id">
+         所属部署名: <select name="gender">
+                      <option></option>
+                      <option value="0">技術部</option>
+                      <option value="1">営業部</option>
+　　　　　　　　　　　<option value="2">人事部</option>
+                  </select>
+           ユーザ名: <input type="text" id="name" name="name">
+           パスワード: <input type="text" id="password" name="password">
+            <input type="submit" value="登録"><input type="reset" value="リセット">
+            </form></td></tr>
+@if(staffList.isEmpty()) {
+         社員 は一件もありません
+     } else {
+     <table border="2">
+     <tr>
+     <th>
+    	社員ID
+     </th>
+     <th>
+     	部署ID
+     </th>
+     <th>
+     社員名
+     </th>
+     <th>
+     パスワード
+     </th>
+     <th>
+     権限
+     </th>
+     </tr>
+        @for(staff <- staffList) {
+        <tr>
+         <td>@staff.STAFF_ID</td>
+         <td>@staff.DEPARTMENT_ID</td>
+         <td>@staff.STAFF_NAME</td>
+         <td>@staff.PASSWORD</td>
+         <td>@staff.AUTHORITY</td>
+         <td><input type="submit" value="編集"></td>
+         <td><input type="submit" value="削除"></td>
+
+        </tr>
+        }
+        </table>
+     }
+    }
