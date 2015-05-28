@@ -1,0 +1,23 @@
+<style>
+.abbreviation {
+	overflow: hidden;
+	-o-text-overflow: ellipsis;
+	-webkit-text-overflow: ellipsis;
+	text-overflow: ellipsis;
+	width: 300px;
+	white-space: nowrap;
+}
+
+td,th{
+  table-layout:fixed;
+}
+.no{
+  width:30px;
+}
+.name{
+  width:100px;
+}
+.address{
+  width:200px;
+}
+</style>
