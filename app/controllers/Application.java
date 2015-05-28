@@ -3,19 +3,20 @@ import play.*;
 import play.mvc.*;
 import play.data.*;
 
-
 import java.util.Arrays;
 import java.text.SimpleDateFormat;
+
 import models.Card;
+import models.Staff;
+
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+
 import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
-
 import views.html.*;
-
 import models.*;
 public class Application extends Controller {
 
@@ -37,6 +38,48 @@ public class Application extends Controller {
 		session("name", loginForm.get().name);
 		return redirect(routes.Application.index());
 	}
+
+	//ここから変更
+
+	public static Result cards(){
+   	 Card card =new Card();
+   	 card.helped_date=new Date();
+   	 card.get_staff_id=2345;
+   	 card.send_staff_id=4567;
+   	 card.help_detail="デバッグを手伝ってくれた";
+   	 card.point=2;
+   	 card.card_id=3;
+   	 card.category_id=21;
+
+
+   	 List<Card> cardList=Card.find.all();
+   	 return ok(cards.render(cardList));
+    }
+
+	 public static Result mypage(){
+    	 List<Card> cardList=Card.find.all();
+    	 return ok(cards.render(cardList));
+
+
+    	 List<Card> cardList2=Card.find.where().eq("staff_id",name);
+    	 return ok(cards.render(cardList2));
+
+
+    	 List<Card> cardList3=Card.find.where().eq("","");
+    	 return ok(cards.render(cardList3));
+
+
+     }
+
+	 public static Result staffs(){
+    	 Staff staff =new Staff();
+
+         List<Staff> staffList=Staff.find.all();
+         return ok(staffs.render(staffList));
+     }
+
+	 //ここまで変更
+
 
 	public static Result addUser() {
 		User user = User.find.where().eq("name", "admin").findUnique();
