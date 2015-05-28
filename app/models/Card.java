@@ -31,15 +31,10 @@ public class Card extends Model {
 	 @NotNull
 	        public int category_id;
 	        @CreatedTimestamp
-	        public Date post_date;
 
-	        @ManyToOne
-	    	public Staff staff ;
-	        @ManyToOne
-	    	public Category category ;
 
-	        public static Finder<Long, Card> find = new Finder<Long, Card>(
-	                Long.class, Card.class
+	        public static Finder<Integer, Card> find = new Finder<Integer, Card>(
+	                Integer.class, Card.class
 	        );
 
 }

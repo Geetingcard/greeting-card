@@ -19,6 +19,12 @@ public class User extends Model {
 
   public String password;
 
+
+	public int department_id;
+
+
+  public int authority;
+
   public static Finder<Long, User> find = new Finder<Long,User>(
     Long.class, User.class
   );
