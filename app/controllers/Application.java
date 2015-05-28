@@ -78,7 +78,8 @@ public class Application extends Controller {
     }
 
 	public static Result mypage(){
-		return ok(mypage.render());
+
+		return ok(mypage.render(""));
 	}
 
 

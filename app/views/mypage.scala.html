@@ -1,11 +1,11 @@
-<html>
-	<head>
-	<meta http-equiv="content-type" content="text/html; charset=utf-8">
-
-	<title>マイページ</title>
-	</head>
-	<body>
+@(name:String)
+	@common("マイページ"){
 		<h1 align="center">マイページ</h1>
+		<table>
+		<th>@session.get("name")</th>
+		<td>さん、いらっしゃい</td>
+
+
 		<form>
 		<div align="right">
 			<table border="0" style="padding:0% 20% 0% 0%;">
@@ -31,5 +31,4 @@
 			</table>
 			</div>
 			</form>
-	</body>
-</html>
+	}
