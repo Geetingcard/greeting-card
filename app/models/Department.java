@@ -9,9 +9,9 @@ import javax.validation.constraints.NotNull;
 import play.db.ebean.Model;
 
 @Entity
-public class Departmant extends Model {
+public class Department extends Model {
 	 @Id
-	 public int departent_id;
+	 public int department_id;
 	 @NotNull
 	 public String department_name;
 

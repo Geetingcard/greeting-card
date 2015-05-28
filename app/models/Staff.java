@@ -21,7 +21,10 @@ public class Staff extends Model {
 	        public String password;
 	 @NotNull
 	        public int authority;
-	 @ManyToOne
-	   	 	public Departmant depretment ;
+
+
+	 public static Finder<Integer, Staff> find = new Finder<Integer, Staff>(
+             Integer.class, Staff.class
+             );
 
 }

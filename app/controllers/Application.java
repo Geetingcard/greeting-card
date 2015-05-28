@@ -36,7 +36,7 @@ public class Application extends Controller {
 		}
 		session().clear();
 		session("name", loginForm.get().name);
-		return redirect(routes.Application.index());
+		return redirect(routes.Application.mypage());
 	}
 
 	//ここから変更
@@ -52,31 +52,37 @@ public class Application extends Controller {
    	 card.category_id=21;
 
 
+   	 Staff staff=new Staff();
+   	 staff.staff_id=2345;
+   	 staff.department_id=3;
+   	 staff.staff_name="山田太郎";
+   	 staff.password="pass1234";
+   	 staff.authority=1;
+
+
+   	 Category category=new Category();
+   	 category.category_id=21;
+   	 category.category_name="デバッグ";
+
+
+   	 Department department=new Department();
+   	department.department_id=3;
+   	department.department_name="事業部";
+
+
+
+
+
    	 List<Card> cardList=Card.find.all();
    	 return ok(cards.render(cardList));
     }
 
-	 public static Result mypage(){
-    	 List<Card> cardList=Card.find.all();
-    	 return ok(cards.render(cardList));
+	public static Result mypage(){
+		return ok(mypage.render());
+	}
 
 
-    	 List<Card> cardList2=Card.find.where().eq("staff_id",name);
-    	 return ok(cards.render(cardList2));
 
-
-    	 List<Card> cardList3=Card.find.where().eq("","");
-    	 return ok(cards.render(cardList3));
-
-
-     }
-
-	 public static Result staffs(){
-    	 Staff staff =new Staff();
-
-         List<Staff> staffList=Staff.find.all();
-         return ok(staffs.render(staffList));
-     }
 
 	 //ここまで変更
 
