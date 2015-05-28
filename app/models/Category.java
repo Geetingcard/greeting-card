@@ -11,12 +11,13 @@ import play.db.ebean.Model;
 
 @Entity
 public class Category extends Model {
-	 @Id
-	 		public int category_id;
-	 @NotNull
-	        public String category_name;
+	@Id
+	public int category_id;
 
-	 @OneToMany
-	 	public List<Card> cards= new ArrayList<Card>();
+	@NotNull
+	public String category_name;
+
+	@OneToMany
+	public List<Card> cards= new ArrayList<Card>();
 
 }

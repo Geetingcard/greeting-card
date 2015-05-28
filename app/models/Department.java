@@ -14,6 +14,7 @@ import play.db.ebean.Model;
 public class Department extends Model {
 	 @Id
 	 public int department_id;
+
 	 @NotNull
 	 public String department_name;
 
