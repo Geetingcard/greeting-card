@@ -1,18 +1,27 @@
-@(cardList:List[Card])
+@(cardList: List[Card],departmentList: List[Department])
 <link rel="stylesheet" type="text/css" href="@routes.Assets.at("stylesheets/main.css")" media="all" />
-@if(cardList.isEmpty()) {
-        Card は一件もありません
-    } else {
-    <div overflow-y:scroll;">
-       <table border=1 class="abbreviation">
+@if(cardList.isEmpty()) { Card は一件もありません } else {
+<divoverflow-y:scroll;">
+       <table border="1" class="abbreviation">
        @for(card <- cardList) {
        <tr>
-           <td class="no">@card.get_staff_id</td>
-           <td class="no">@card.send_staff_id</td>
+           <td class="no">@card.get_staff.staff_name</td>
+           <td class="no">@card.send_staff.staff_name</td>
            <td class="no">@card.point</td>
            <td class="name">@card.help_detail</td>
            <td class="name">@card.thanks_word</td>
            <td class="name">@card.helped_date</td>
+       </tr>
+       }
+       </table>
+       </div>
+	<divoverflow-y:scroll;">
+       <table border="1" class="abbreviation">
+       @for(dep <- departmentList) {
+       <tr>
+           <td class="no">@dep.department_id.</td>
+           <td class="no">@dep.department_name</td>
+
        </tr>
        }
        </table>
