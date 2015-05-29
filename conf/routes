@@ -12,8 +12,15 @@ GET     /assets/*file               controllers.Assets.at(path="/public", file)
 
 GET     /login                      controllers.Application.login()
 POST    /login                      controllers.Application.authenticate()
-GET     /addUser                    controllers.Application.addUser()
 GET     /logout                     controllers.Application.logout()
 #ここから変更
 #GET		/staffs						controllers.Application.staffs()
 GET		/mypage						controllers.Application.mypage()
+
+
+
+
+GET     /login2       controllers.Authentication.index()
+POST    /login2       controllers.Authentication.authenticate()
+
+GET     /logout2      controllers.Authentication.logout()
