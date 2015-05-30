@@ -26,34 +26,29 @@ public class Application extends Controller {
 		return ok(index.render());
 	}
 
+
+
 	public static Result login() {
-		return ok(login.render(Form.form(User.class)));
+		return ok(login.render(Form.form(Staff.class)));
 	}
 
 	public static Result authenticate() {
-		Form<User> loginForm = Form.form(User.class).bindFromRequest();
+		Form<Staff> loginForm = Form.form(Staff.class).bindFromRequest();
 		if (loginForm.hasErrors()) {
 			return badRequest(login.render(loginForm));
 		}
 		session().clear();
-		session("name", loginForm.get().name);
+		session("username", loginForm.get().username);
 		return redirect(routes.Application.mypage());
 	}
 
 
 	public static Result mypage(){
-
-		return ok(mypage.render(""));
+		List<Card> cardList = Card.find.all();
+		List<Staff> staffList = Staff.find.all();
+	    return ok(mypage.render(cardList, staffList));
 	}
 
-
-	public static Result addUser() {
-		User user = User.find.where().eq("name", "admin").findUnique();
-		if (user == null) {
-			User.create("admin", "password123");
-		}
-		return redirect(routes.Application.login());
-	}
 
 	public static Result logout() {
 		session().clear();

@@ -12,6 +12,7 @@ create table card (
   thanks_word               varchar(255),
   helped_date               timestamp not null,
   category_id               integer not null,
+  post_date                 timestamp not null,
   constraint pk_card primary key (card_id))
 ;
 
@@ -30,17 +31,10 @@ create table department (
 create table staff (
   staff_id                  integer not null,
   department_id             integer not null,
-  staff_name                varchar(255) not null,
+  username                  varchar(255) not null,
   password                  varchar(255) not null,
   authority                 integer not null,
   constraint pk_staff primary key (staff_id))
-;
-
-create table user (
-  id                        bigint not null,
-  name                      varchar(255),
-  password                  varchar(255),
-  constraint pk_user primary key (id))
 ;
 
 create sequence card_seq;
@@ -51,8 +45,14 @@ create sequence department_seq;
 
 create sequence staff_seq;
 
-create sequence user_seq;
-
+alter table card add constraint fk_card_get_staff_id_1 foreign key (get_staff_id) references staff (staff_id) on delete restrict on update restrict;
+create index ix_card_get_staff_id_1 on card (get_staff_id);
+alter table card add constraint fk_card_send_staff_id_2 foreign key (send_staff_id) references staff (staff_id) on delete restrict on update restrict;
+create index ix_card_send_staff_id_2 on card (send_staff_id);
+alter table card add constraint fk_card_category_id_3 foreign key (category_id) references category (category_id) on delete restrict on update restrict;
+create index ix_card_category_id_3 on card (category_id);
+alter table staff add constraint fk_staff_department_4 foreign key (department_id) references department (department_id) on delete restrict on update restrict;
+create index ix_staff_department_4 on staff (department_id);
 
 
 
@@ -68,8 +68,6 @@ drop table if exists department;
 
 drop table if exists staff;
 
-drop table if exists user;
-
 SET REFERENTIAL_INTEGRITY TRUE;
 
 drop sequence if exists card_seq;
@@ -79,6 +77,4 @@ drop sequence if exists category_seq;
 drop sequence if exists department_seq;
 
 drop sequence if exists staff_seq;
-
-drop sequence if exists user_seq;
 
