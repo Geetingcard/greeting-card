@@ -1,5 +1,6 @@
 package models;
 import java.util.ArrayList;
+
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -9,7 +10,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
-
+import javax.persistence.*;
+import play.db.ebean.Model;
 import play.db.ebean.Model;
 
 @Entity
@@ -23,7 +25,7 @@ public class Staff extends Model {
 	public Department department;
 
 	@NotNull
-	public String staff_name;
+	public String username;
 
 	@NotNull
 	public String password;
@@ -36,4 +38,17 @@ public class Staff extends Model {
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "get_staff")
 	public List<Card> get_staff = new ArrayList<Card>();
+
+	public static Finder<Integer, Staff> find = new Finder<Integer, Staff>(
+			Integer.class, Staff.class
+			);
+
+
+
+
+    public static Boolean authenticate(String username, String password) {
+        Staff user = find.where().eq("username", username).findUnique();
+        return (user != null && user.password.equals(password));
+    }
+
 }
