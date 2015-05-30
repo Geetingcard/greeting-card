@@ -1,10 +1,9 @@
-@(name:String)
+@(cardList: List[Card], staffList: List[Staff])
 	@common("マイページ"){
 		<h1 align="center">マイページ</h1>
 		<table>
 		<th>@session.get("name")</th>
-		<td>さん、いらっしゃい</td>
-
+		<td>さん、ようこそ！</td>
 
 		<form>
 		<div align="right">
@@ -13,10 +12,6 @@
 					<tr>
 						<td>
 						<a href="@routes.Input.input()">入力画面</a></td>
-						<td><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
-						</td>
-						<td>
-						<a href="@routes.Search.search()">検索画面</a></td>
 						<td><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
 						</td>
 						<td>
@@ -35,4 +30,44 @@
 			</table>
 			</div>
 			</form>
-	}
+
+			@if(cardList.isEmpty()) {
+       		 card は一件もありません
+ 			   } else {<table border="4">
+     <tr>
+     <th rowspan="2">
+    	日付
+     </th>
+     <th colspan="2">
+     	感謝された人
+     </th>
+     <th rowspan="2">
+    	ヘルプ内容詳細
+     </th>
+     <th colspan="2">感謝する人</th>
+     <th rowspan="2">詳細</th>
+     </tr>
+     <tr>
+     <th>部署</th>
+     <th>名前</th>
+     <th>部署</th>
+     <th>名前</th>
+
+     </tr>
+        @for(card <- cardList) {
+        <tr>
+         <td>@card.helped_date</td>
+         <td>@card.get_staff_id</td>
+         <td>@card.get_staff_id</td>
+         <td>@card.help_detail</td>
+		 <td>@card.send_staff_id</td>
+		 <td>@card.send_staff_id</td>
+
+         <td><input type="submit" value=""></td>
+        </tr>
+        }
+        </table>
+       }
+       </ul>
+
+}
