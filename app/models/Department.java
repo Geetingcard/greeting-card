@@ -20,4 +20,8 @@ public class Department extends Model {
 
 	 @OneToMany(cascade = CascadeType.ALL, mappedBy = "department")
 	 public List<Staff> staffs = new ArrayList<Staff>();
+
+	 public static Finder<Long, Department> find = new Finder<Long, Department>(
+				Long.class, Department.class
+				);
 }

@@ -33,10 +33,10 @@ public class Staff extends Model {
 	@NotNull
 	public int authority;
 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "send_staff_id")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "send_staff")
 	public List<Card> send_staff = new ArrayList<Card>();
 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "get_staff_id")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "get_staff")
 	public List<Card> get_staff = new ArrayList<Card>();
 
 	public static Finder<Integer, Staff> find = new Finder<Integer, Staff>(

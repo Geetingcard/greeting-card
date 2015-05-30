@@ -1,23 +1,15 @@
 package controllers;
-import play.*;
-import play.mvc.*;
-import play.data.*;
-
 import java.text.ParseException;
-import java.util.Arrays;
 import java.text.SimpleDateFormat;
 
 import models.Card;
 import models.Staff;
 
 import java.util.Date;
-import java.util.List;
 import java.util.Map;
 
-import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
-import views.html.*;
 import models.*;
 public class Input extends Controller {
 
@@ -40,8 +32,8 @@ public class Input extends Controller {
 			Date date = format.parse(params.get("helped_date")[0]);
 
 			newCard.card_id=Card.find.where().orderBy("card_id").findRowCount()+1;
-			newCard.get_staff_id=newStaff;
-			newCard.send_staff_id=newStaff2;
+			newCard.get_staff=newStaff;
+			newCard.send_staff=newStaff2;
 			newCard.point=Integer.parseInt(params.get("point")[0]);
 			newCard.help_detail=params.get("help_detail")[0];
 			newCard.thanks_word=params.get("thanks_word")[0];

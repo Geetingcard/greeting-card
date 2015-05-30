@@ -19,12 +19,12 @@ public class Card extends Model {
 	@ManyToOne
 	@JoinColumn(name = "get_staff_id")
 	@NotNull
-	public Staff get_staff_id;
+	public Staff get_staff;
 
 	@ManyToOne
 	@JoinColumn(name = "send_staff_id")
 	@NotNull
-	public Staff send_staff_id;
+	public Staff send_staff;
 
 	@NotNull
 	public int point;
