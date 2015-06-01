@@ -375,3 +375,7 @@ Caused by: org.h2.jdbc.JdbcSQLException: アプリケーションにより閉じ
 The connection was not closed by the application and is garbage collected [90018-175]
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:332)
 	... 39 more
+06-01 16:11:11 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLException: データ変換中にエラーが発生しました 
+Data conversion error converting ; SQL statement:
+select t0.staff_id c0, t0.staff_code c1, t0.staff_name c2, t0.password c3, t0.authority c4, t0.department_id c5 from staff t0 where t0.staff_code = ?  [22018-175]
