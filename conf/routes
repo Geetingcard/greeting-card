@@ -18,3 +18,5 @@ GET 	/mypage		controllers.Authentication.authenticate()
 GET		/login		controllers.Authentication.index()
 POST	/login		controllers.Authentication.authenticate()
 GET		/logout		controllers.Authentication.logout()
+
+GET		/control	controllers.Application.control()
