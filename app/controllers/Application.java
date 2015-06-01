@@ -25,6 +25,11 @@ public class Application extends Controller {
 		return ok(index.render());
 	}
 
+	public static Result control() {
+		return ok(control.render());
+	}
+
+
 //	public static Result mypage(){
 //		List<Card> cardList = Card.find.all();
 //		List<Staff> staffList = Staff.find.all();

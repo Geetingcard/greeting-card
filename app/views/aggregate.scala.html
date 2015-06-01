@@ -5,7 +5,7 @@
 	Card は一件もありません
 } else {
 <form action="@routes.Aggregate.indexsearch()" method="POST">>
-<div style="height:200px; width:100%; border:#ff0000 solid 3px;">
+<div style="height:50px; width:100%; border:#000000 solid 3px;">
 </SELECT>
 	感謝した部署：
 	<SELECT name="get_depart">
@@ -52,5 +52,9 @@
 	}
 </table>
 </div>
-感謝カード枚数：@staffcnt
+<br>感謝カード枚数：@staffcnt</br>
+<table align="right">
+
+<tr><td><a href="@routes.Application.control()">管理者メニューに戻る</a></td></tr>
+</table>
 }
