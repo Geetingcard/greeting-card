@@ -1,0 +1,56 @@
+@(cardList: List[Card],departmentList: List[Department],staffList: List[Staff],categoryList: List[Category],staffcnt: Integer)
+<link rel="stylesheet" type="text/css" href="@routes.Assets.at("stylesheets/main.css")" media="all" />
+
+@if(cardList.isEmpty()) {
+	Card は一件もありません
+} else {
+<form action="@routes.Aggregate.indexsearch()" method="POST">>
+<div style="height:200px; width:100%; border:#ff0000 solid 3px;">
+</SELECT>
+	感謝した部署：
+	<SELECT name="get_depart">
+	<OPTION value=></OPTION>
+	@for(dep <- departmentList){
+		<OPTION value=@dep.department_id>@dep.department_name</OPTION>
+	}
+	</SELECT>
+	感謝された人(ID)：<input type="text" name="staff_code" />
+	感謝された人(name)：<input type="text" name="staff_name" />
+
+
+<input type="submit" value="検索" />
+</form>
+</div>
+<caption>検索結果</caption>
+<div style="height:200px; width:100%; overflow-y:scroll;">
+<table border="1">
+	<tr>
+			<th rowspan="2">助けた日付</th>
+			<th colspan="2">感謝された人</th>
+			<th rowspan="2">感謝内容</th>
+			<th rowspan="2">感謝の言葉</th>
+			<th rowspan="2">ポイント</th>
+			<th colspan="2">感謝した人</th>
+		</tr>
+		<tr>
+			<th>部署</th>
+			<th>名前</th>
+			<th>部署</th>
+			<th>名前</th>
+		</tr>
+	@for(card <- cardList) {
+		<tr>
+		<td class="l1">@card.helped_date</td>
+		<td class="l1">@card.send_staff.department.department_name</td>
+		<td class="l2">@card.send_staff.staff_name</td>
+		<td class="l3">@card.help_detail</td>
+		<td class="l3">@card.thanks_word</td>
+		<td class="l3">@card.point</td>
+		<td class="l1">@card.get_staff.department.department_name</td>
+		<td class="l2">@card.get_staff.staff_name</td>
+		</tr>
+	}
+</table>
+</div>
+感謝カード枚数：@staffcnt
+}
