@@ -8,6 +8,42 @@
 	white-space: nowrap;
 }
 
+/*
+<link rel="stylesheet" type="text/css" href="@routes.Assets.at("stylesheets/main.css")" media="all" />
+*/
+
+
+body{background-color:#e8feff;
+	}
+
+
+h1{	font-size:40px;
+	color:black;
+	}
+
+
+
+
+table{
+	background-color:rgb(255,255,255);
+}
+h3{
+	font-size:25px;
+
+}
+td,th{
+	font-size:20px;
+}
+th{
+	background-color:#70ff60;
+}
+
+input.button{
+	width:50px;
+	height:40px;
+}
+
+
 td,th{
   table-layout:fixed;
 }
@@ -20,4 +56,5 @@ td,th{
 .address{
   width:200px;
 }
+
 </style>
