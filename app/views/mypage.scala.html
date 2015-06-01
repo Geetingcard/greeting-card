@@ -1,22 +1,24 @@
 @(cardList: List[Card], staffList: List[Staff],username:String,mycardList:List[Card])
 
-
 <HTML>
 
   <HEAD>
-  <link rel="stylesheet" type="text/css" href="@routes.Assets.at("stylesheets/mypage.css")" media="all" />
+  <link rel="stylesheet" type="text/css" href="@routes.Assets.at("stylesheets/main.css")" media="all" />
   </HEAD>
 
   <BODY>
 <h1 align="center">マイページ</h1>
 
 	@session.get("login")
+		<table align="center">
 	@username さん、ようこそ!<br>
 
 			<tr>
 				<td><a href="@routes.Input.input()">入力画面</a></td>
 				<td></td>
+				<!-- 未実装
 				<td><a href="pass_change.html">パスワード変更画面</a></td>
+				-->
 				<td><a href="@routes.Search.search()">検索画面</a></td>
 
 				<td><a href="">管理者メニュー</a></td>
@@ -27,7 +29,7 @@
 
 <h3 align="center">代表事例</h3>
 	<div style="height: 100px; width: 900px; overflow-y: scroll;margin-left:auto;margin-right:auto;">
-		<table border="1" align="center"  width=100%>
+		<table border="2" align="center"  width=100%>
 			<tr>
 				<th>日付</th>
 				<th>部署</th>
@@ -53,7 +55,7 @@
 
 <h3 align="center">@username さん宛の感謝カード</h3>
 	<div style="height: 100px; width: 900px; overflow-y: scroll;margin-left:auto;margin-right:auto;">
-		<table border="1" align="center" width=100%>
+		<table border="2" align="center" width=100%>
 			<tr>
 				<th>日付</th>
 				<th>部署</th>
@@ -79,7 +81,7 @@
 
 <h3 align="center">掲示板</h3>
 	<div style="height: 200px; width: 900px; overflow-y: scroll;margin-left:auto;margin-right:auto;">
-		<table border="1" align="center" width=100%>
+		<table border="2" align="center" width=100%>
 			<tr>
 				<th>日付</th>
 				<th>部署</th>
@@ -97,7 +99,7 @@
 					var d= new Date(@card.helped_date));
 
 				</script>
-				<td class="depart">@card.send_staff.department.department_name</td>
+				<td class="date">@card.send_staff.department.department_name</td>
 				<td class="name">@card.send_staff.staff_name</td>
 				<td class="help">@card.help_detail</td>
 				<td class="help">@card.thanks_word</td>

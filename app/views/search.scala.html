@@ -1,33 +1,35 @@
 @(cardList: List[Card],departmentList: List[Department],staffList: List[Staff],categoryList: List[Category])
 <link rel="stylesheet" type="text/css" href="@routes.Assets.at("stylesheets/main.css")" media="all" />
 
+<h1 align="center">感謝カード検索</h1>
+
 @if(cardList.isEmpty()) {
 	Card は一件もありません
 } else {
-<form action="@routes.Search.indexsearch()" method="POST">>
-<div style="height:200px; width:100%; border:#ff0000 solid 3px;">
-	感謝された部署：
+<form action="@routes.Search.indexsearch()" method="POST">
+<div align="center" style="height:45px; width:100%; border:#000000 solid 2px;">
+	受取人の部署：
 	<SELECT name="send_depart">
 	<OPTION value=></OPTION>
 	@for(dep <- departmentList){
 		<OPTION value=@dep.department_id>@dep.department_name</OPTION>
 	}
 	</SELECT>
-	感謝された人：
+	受取人：
 	<SELECT name="send_staff">
 	<OPTION value=></OPTION>
 	@for(staff <- staffList){
 		<OPTION value=@staff.staff_id>@staff.staff_name</OPTION>
 	}
 	</SELECT>
-	感謝した部署：
+	差出人の部署：
 	<SELECT name="get_depart">
 	<OPTION value=></OPTION>
 	@for(dep <- departmentList){
 		<OPTION value=@dep.department_id>@dep.department_name</OPTION>
 	}
 	</SELECT>
-	感謝された人：
+	差出人：
 	<SELECT name="get_staff">
 	<OPTION value=></OPTION>
 	@for(staff <- staffList){
@@ -48,7 +50,7 @@
     	       		<OPTION value=1>1</OPTION>
 					<OPTION value=2>2</OPTION>
 					<OPTION value=3>3</OPTION>
-				</SELECT><br>
+				</SELECT>
 <input type="submit" value="検索" />
 </form>
 </div>
@@ -76,5 +78,8 @@
 		</tr>
 	}
 </table>
+<!-- マイページへのリンク
+	<td><a href="@routes.Authentication.authenticate()">入力画面</a></td>
+	-->
 </div>
 }
