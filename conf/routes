@@ -3,24 +3,16 @@
 # ~~~~
 
 # Home page
-GET     /                           controllers.Application.index()
-GET     /input                      controllers.Input.input()
-POST    /input                      controllers.Input.createCard()
-GET     /search                      controllers.Search.search()
+GET     /    		controllers.Application.index()
+GET     /input		controllers.Input.input()
+POST    /input		controllers.Input.createCard()
+GET     /search		controllers.Search.search()
+POST     /search                      controllers.Search.indexsearch()
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
-
-GET     /login                      controllers.Application.login()
-POST    /login                      controllers.Application.authenticate()
-GET     /logout                     controllers.Application.logout()
 #ここから変更
-#GET		/staffs						controllers.Application.staffs()
-GET		/mypage						controllers.Application.mypage()
-
-
-
-
-GET     /login2       controllers.Authentication.index()
-POST    /login2       controllers.Authentication.authenticate()
-
-GET     /logout2      controllers.Authentication.logout()
+#GET	/staffs		controllers.Application.staffs()
+GET 	/mypage		controllers.Authentication.authenticate()
+GET		/login		controllers.Authentication.index()
+POST	/login		controllers.Authentication.authenticate()
+GET		/logout		controllers.Authentication.logout()

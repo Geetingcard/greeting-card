@@ -20,4 +20,7 @@ public class Category extends Model {
 	@OneToMany
 	public List<Card> cards= new ArrayList<Card>();
 
+	public static Finder<Long, Category> find = new Finder<Long, Category>(
+			Long.class, Category.class
+			);
 }

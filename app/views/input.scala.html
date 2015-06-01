@@ -1,12 +1,56 @@
-<form action="@routes.Input.createCard()" method="POST">>
-    <p>
-    	get_staff_id: <input type="text" name="get_staff_id" />
-    	send_staff_id: <input type="text" name="send_staff_id" />
-    	point: <input type="text" name="point" />
-    	help_detail: <input type="text" name="help_detail" />
-    	thanks_word: <input type="text" name="thanks_word" />
-    	helped_date: <input type="date" name="helped_date" />
-    	category_id: <input type="text" name="category_id" />
-    </p>
-    <input type="submit" value="Create" />
-</form>
+@(departmentList:List[Department],categoryList:List[Category])
+
+	<script>
+
+	</script>
+<html lang="jp">
+<body>
+	<table border="1" width="100%">
+		<tr>
+			<th align="left">感謝カード入力画面</th>
+		</tr>
+		<tr>
+			<td>
+				<p></p>
+				<form action="@routes.Input.createCard()" method="POST">
+					&nbsp&nbsp助けられた人&nbsp 名前: <input type="text" name="get_staff_id" />&nbsp&nbsp&nbsp&nbsp&nbsp
+					所属部署名:
+					<Select name="dep">
+					@for(depart <- departmentList) {
+						<option value="@depart.department_id">@depart.department_name</oprion>
+					}
+					</Select><br>
+					<p></p>
+					&nbsp&nbspカテゴリ:
+					<SELECT name="category_id">
+					@for(cate <- categoryList){
+						<OPTION value=@cate.category_id>@cate.category_name</OPTION>
+					}
+					</SELECT>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+
+					感謝ポイント: <SELECT name="point">
+						<OPTION value="1">業務外</OPTION>
+						<OPTION value="2">業務優先低</OPTION>
+						<OPTION value="3">業務優先高</OPTION>
+					</SELECT><br>
+					<p>
+						&nbsp&nbspヘルプ内容詳細<br> &nbsp&nbsp
+						<textarea name="help_detail" rows="4" cols="50">○○なときに××なことを手伝っていただきました。</textarea>
+						<br>
+					</p>
+					<p>
+						&nbsp&nbsp感謝の言葉<br>&nbsp&nbsp
+						<textarea name="thanks_word" rows="4" cols="50">手伝っていただきありがとうございました。</textarea>
+						<br>
+					</p>
+					&nbsp&nbsp助けられた日付: <input type="date" name="helped_date" /><br>
+					<div align="right">
+						<input type="submit" value="確認" /> <input type="button"
+							onclick="location.href=" '@routes.Input.input()'" value="戻る" />
+					</div>
+				</form>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>
