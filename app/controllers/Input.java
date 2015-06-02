@@ -46,7 +46,7 @@ public class Input extends Controller {
 			newCard.thanks_word=params.get("thanks_word")[0];
 			newCard.helped_date=date;
 
-			newCard.category_id=newCategory;
+			newCard.category=newCategory;
 			//		Card newCard = Form.form(Card.class).bindFromRequest().get();
 			newCard.save();
 			return redirect(routes.Input.input());
