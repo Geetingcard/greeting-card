@@ -45,26 +45,28 @@ public class Authentication extends Controller {
 
 			List<Card> cardList = Card.find.where().orderBy("helped_date desc").findList();
 			List<Staff> staffList = Staff.find.all();
-
+			List<Card> daihyo_cardList = Card.find.where().eq("point", 3).findList();
 
 			Login login = form.get();
 			Staff staff_log = Staff.find.where().eq("staff_code",login.usercode).findUnique();
 			String username = staff_log.staff_name;
+
 			List<Card> mycardList = Card.find.where().eq("get_staff_id",staff_log.staff_id).orderBy("helped_date desc").findList();
 			session("login", login.usercode);
 //			return ok("ようこそ " + username + " さん!!");
-			return ok(views.html.mypage.render(cardList,staffList,username,mycardList));
+			return ok(views.html.mypage.render(daihyo_cardList,cardList,staffList,username,mycardList));
 		}
 	}
 
 	public static Result mypage() {
 		if (session("login") != null) {
-			List<Card> cardList = Card.find.where().orderBy("helped_date desc").findList();
+
+			List<Card> daihyo_cardList = Card.find.where().eq("point", 3).findList();List<Card> cardList = Card.find.where().orderBy("helped_date desc").findList();
 			List<Staff> staffList = Staff.find.all();
 			Staff staff_log2 = Staff.find.where().eq("staff_code",session("login")).findUnique();
 			String username2 = staff_log2.staff_name;
 			List<Card> mycardList2 = Card.find.where().eq("get_staff_id",staff_log2.staff_id).orderBy("helped_date desc").findList();
-			return ok(views.html.mypage.render(cardList,staffList,username2,mycardList2));
+			return ok(views.html.mypage.render(daihyo_cardList,cardList,staffList,username2,mycardList2));
 		}
 		return ok(index.render(loginForm));
 	}

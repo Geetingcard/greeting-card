@@ -50,8 +50,8 @@ alter table card add constraint fk_card_get_staff_1 foreign key (get_staff_id) r
 create index ix_card_get_staff_1 on card (get_staff_id);
 alter table card add constraint fk_card_send_staff_2 foreign key (send_staff_id) references staff (staff_id) on delete restrict on update restrict;
 create index ix_card_send_staff_2 on card (send_staff_id);
-alter table card add constraint fk_card_category_id_3 foreign key (category_id) references category (category_id) on delete restrict on update restrict;
-create index ix_card_category_id_3 on card (category_id);
+alter table card add constraint fk_card_category_3 foreign key (category_id) references category (category_id) on delete restrict on update restrict;
+create index ix_card_category_3 on card (category_id);
 alter table staff add constraint fk_staff_department_4 foreign key (department_id) references department (department_id) on delete restrict on update restrict;
 create index ix_staff_department_4 on staff (department_id);
 

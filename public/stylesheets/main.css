@@ -20,13 +20,15 @@ body{background-color:#e8feff;
 h1{	font-size:40px;
 	color:black;
 	}
+h2#red{color:red;}
 
 
 
 
 table{
-	background-color:rgb(255,255,255);
+	background-color:#b5b3ff;
 }
+
 h3{
 	font-size:25px;
 
@@ -36,6 +38,9 @@ td,th{
 }
 th{
 	background-color:#70ff60;
+}
+td{
+	background-color: rgb(255,255,255);
 }
 
 input.button{
