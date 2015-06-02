@@ -56,6 +56,19 @@ public class Authentication extends Controller {
 		}
 	}
 
+	public static Result mypage() {
+		if (session("login") != null) {
+			List<Card> cardList = Card.find.all();
+			List<Staff> staffList = Staff.find.all();
+			Staff staff_log2 = Staff.find.where().eq("staff_code",session("login")).findUnique();
+			String username2 = staff_log2.staff_name;
+			List<Card> mycardList2 = Card.find.where().eq("get_staff_id",staff_log2.staff_id).findList();
+			return ok(views.html.mypage.render(cardList,staffList,username2,mycardList2));
+
+		}
+		return ok(index.render(loginForm));
+	}
+
 	public static Result logout() {
 		session().clear();
 		return redirect(routes.Authentication.index());

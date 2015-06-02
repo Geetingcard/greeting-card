@@ -14,7 +14,7 @@ POST    /aggregate  controllers.Aggregate.indexsearch()
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
 #ここから変更
 #GET	/staffs		controllers.Application.staffs()
-GET 	/mypage		controllers.Authentication.authenticate()
+GET 	/mypage		controllers.Authentication.mypage()
 GET		/login		controllers.Authentication.index()
 POST	/login		controllers.Authentication.authenticate()
 GET		/logout		controllers.Authentication.logout()
