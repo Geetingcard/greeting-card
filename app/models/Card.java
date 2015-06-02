@@ -38,7 +38,7 @@ public class Card extends Model {
 	@ManyToOne
 	@JoinColumn(name = "category_id")
 	@NotNull
-	public Category category_id;
+	public Category category;
 
 	@CreatedTimestamp
 	public Date post_date;
