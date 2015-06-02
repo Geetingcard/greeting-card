@@ -9,10 +9,9 @@
   <BODY>
 <h1 align="center">マイページ</h1>
 
-	@session.get("login")
-		<table align="center">
-	@username さん、ようこそ!<br>
-
+	<FONT size="5">社員番号：@session.get("login")</FONT>
+	&nbsp&nbsp&nbsp<FONT size="5">ようこそ! @username さん</FONT><br>
+	<table align="center">
 			<tr>
 				<td><a href="@routes.Input.input()">入力画面</a></td>
 				<td></td>
@@ -30,15 +29,19 @@
 <h3 align="center">代表事例</h3>
 	<div style="height: 100px; width: 900px; overflow-y: scroll;margin-left:auto;margin-right:auto;">
 		<table border="2" align="center"  width=100%>
-			<tr>
-				<th>日付</th>
-				<th>部署</th>
-				<th>名前</th>
-				<th>ヘルプ詳細内容</th>
-				<th>感謝の言葉</th>
-				<th>部署</th>
-				<th>名前</th>
-			</tr>
+		<tr>
+			<th rowspan="2">日付</th>
+			<th colspan="2">受取人</th>
+			<th rowspan="2">ヘルプ内容</th>
+			<th rowspan="2">感謝の言葉</th>
+			<th colspan="2">差出人</th>
+		</tr>
+		<tr>
+			<th>部署</th>
+			<th>名前</th>
+			<th>部署</th>
+			<th>名前</th>
+		</tr>
 			@for(card <- mycardList) {
 			<tr>
 				<td class="date">@card.helped_date</td>
@@ -56,15 +59,19 @@
 <h3 align="center">@username さん宛の感謝カード</h3>
 	<div style="height: 100px; width: 900px; overflow-y: scroll;margin-left:auto;margin-right:auto;">
 		<table border="2" align="center" width=100%>
-			<tr>
-				<th>日付</th>
-				<th>部署</th>
-				<th>名前</th>
-				<th>ヘルプ詳細内容</th>
-				<th>感謝の言葉</th>
-				<th>部署</th>
-				<th>名前</th>
-			</tr>
+		<tr>
+			<th rowspan="2">日付</th>
+			<th colspan="2">受取人</th>
+			<th rowspan="2">ヘルプ内容</th>
+			<th rowspan="2">感謝の言葉</th>
+			<th colspan="2">差出人</th>
+		</tr>
+		<tr>
+			<th>部署</th>
+			<th>名前</th>
+			<th>部署</th>
+			<th>名前</th>
+		</tr>
 			@for(card <- mycardList) {
 			<tr>
 				<td class="date">@card.helped_date</td>
@@ -83,23 +90,22 @@
 	<div style="height: 200px; width: 900px; overflow-y: scroll;margin-left:auto;margin-right:auto;">
 		<table border="2" align="center" width=100%>
 			<tr>
-				<th>日付</th>
-				<th>部署</th>
-				<th>名前</th>
-				<th>ヘルプ詳細内容</th>
-				<th>感謝の言葉</th>
-				<th>部署</th>
-				<th>名前</th>
-			</tr>
+			<th rowspan="2">日付</th>
+			<th colspan="2">受取人</th>
+			<th rowspan="2">ヘルプ内容</th>
+			<th rowspan="2">感謝の言葉</th>
+			<th colspan="2">差出人</th>
+		</tr>
+		<tr>
+			<th>部署</th>
+			<th>名前</th>
+			<th>部署</th>
+			<th>名前</th>
+		</tr>
 			@for(card <- cardList) {
 			<tr>
-
-
-				<script>
-					var d= new Date(@card.helped_date));
-
-				</script>
-				<td class="date">@card.send_staff.department.department_name</td>
+				<td class="date">@card.helped_date</td>
+				<td class="depart">@card.send_staff.department.department_name</td>
 				<td class="name">@card.send_staff.staff_name</td>
 				<td class="help">@card.help_detail</td>
 				<td class="help">@card.thanks_word</td>

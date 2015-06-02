@@ -1,36 +1,59 @@
-@(cardList: List[Card],departmentList: List[Department],staffList: List[Staff],categoryList: List[Category],staffcnt: Integer)
+@(cardList: List[Card],departmentList: List[Department],staffList: List[Staff],categoryList: List[Category],staffcnt: Integer ,point_sum:Integer)
+@import helper._
+<html>
+
+ <head>
 <link rel="stylesheet" type="text/css" href="@routes.Assets.at("stylesheets/main.css")" media="all" />
-<h1 align="center">感謝カード集計</h1>
+<script type = "text/javascript">
+function functionName()
+{
+var select1 = document.forms.formName.selectName1; //変数select1を宣言
+var select2 = document.forms.formName.selectName2; //変数select2を宣言
+var num = 0;
+select2.options.length = 0; // 選択肢の数がそれぞれに異なる場合、これが重要
+
+		@for(sta <- staffList){
+			if (select1.options[select1.selectedIndex].value == "@sta.department.department_id"){
+				select2.options[num] = new Option("@sta.staff_name");
+				num++;
+			}
+		}
+}
+</script>
+</head>
+<body onLoad="functionName()" >
 @if(cardList.isEmpty()) {
 	Card は一件もありません
+	<meta http-equiv="REFRESH" content="3">
 } else {
-<form action="@routes.Aggregate.indexsearch()" method="POST">
-<div style="height:50px; width:100%; border:#000000 solid 3px;">
-</SELECT>
-	感謝した部署：
-	<SELECT name="get_depart">
-	<OPTION value=></OPTION>
-	@for(dep <- departmentList){
-		<OPTION value=@dep.department_id>@dep.department_name</OPTION>
-	}
-	</SELECT>
-	感謝された人(ID)：<input type="text" name="staff_code" />
-	感謝された人(name)：<input type="text" name="staff_name" />
+<h1>集計画面</h1>
+<div style="margin:0 auto 0 auto; height:70px; width:600px; border:#000000 solid 2px;">
+<form name="formName" action="@routes.Aggregate.indexsearch()" method="POST">
+部署：<select name = "selectName1" onChange="functionName()">
+       @for(dep <- departmentList) {
+       <option value="@dep.department_id" >@dep.department_name</option>
+       }
+</select>
+感謝された人：<select name = "selectName2"></select><br>
+
+	集計始め:<input type="date" name="start_date">
+	集計終わり:<input type="date" name="end_date">
 
 
 <input type="submit" value="検索" />
 </form>
 </div>
-<caption>検索結果</caption>
+<h2>検索結果</h2>
 <div style="height:200px; width:100%; overflow-y:scroll;">
 <table border="1">
-	<tr>
-			<th rowspan="2">助けた日付</th>
-			<th colspan="2">感謝された人</th>
-			<th rowspan="2">感謝内容</th>
+	<tbody>
+		<tr>
+			<th rowspan="2">日付</th>
+			<th colspan="2">受取人</th>
+			<th rowspan="2">ヘルプ内容</th>
 			<th rowspan="2">感謝の言葉</th>
-			<th rowspan="2">ポイント</th>
-			<th colspan="2">感謝した人</th>
+			<th rowspan="2">point</th>
+			<th colspan="2">差出人</th>
 		</tr>
 		<tr>
 			<th>部署</th>
@@ -40,21 +63,23 @@
 		</tr>
 	@for(card <- cardList) {
 		<tr>
-		<td class="l1">@card.helped_date</td>
-		<td class="l1">@card.send_staff.department.department_name</td>
-		<td class="l2">@card.send_staff.staff_name</td>
-		<td class="l3">@card.help_detail</td>
-		<td class="l3">@card.thanks_word</td>
-		<td class="l3">@card.point</td>
-		<td class="l1">@card.get_staff.department.department_name</td>
-		<td class="l2">@card.get_staff.staff_name</td>
+		<td class="date">@card.helped_date</td>
+		<td class="depart">@card.send_staff.department.department_name</td>
+		<td class="name">@card.send_staff.staff_name</td>
+		<td class="help">@card.help_detail</td>
+		<td class="help">@card.thanks_word</td>
+		<td class="depart">@card.point</td>
+		<td class="depart">@card.get_staff.department.department_name</td>
+		<td class="name">@card.get_staff.staff_name</td>
 		</tr>
 	}
 </table>
 </div>
-<br>感謝カード枚数：@staffcnt</br>
-<table align="right">
-
-<tr><td><a href="@routes.Application.control()">管理者メニューに戻る</a></td></tr>
-</table>
+感謝カード枚数：@staffcnt
+感謝カードpoint：@point_sum
 }
+<table align="right">
+<tr><td><a href="/mypage">マイページに戻る</a></td></tr>
+</table>
+</body>
+</html>

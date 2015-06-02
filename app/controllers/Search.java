@@ -12,6 +12,7 @@ import models.Staff;
 import play.mvc.Controller;
 import play.mvc.Result;
 import play.mvc.Security;
+
 import com.avaje.ebean.ExpressionList;
 
 @Security.Authenticated(Secured.class)
@@ -30,21 +31,16 @@ public class Search extends Controller {
 			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 			Map<String, String[]> params = request().body().asFormUrlEncoded();
 			ExpressionList<Card> sqlList= Card.find.where();
-//			int send_depart=Integer.parseInt(params.get("send_depart")[0]);
 
-			if (!(params.get("send_staff")[0].equals(""))){
-				int send_staff=Integer.parseInt(params.get("send_staff")[0]);
-				sqlList=sqlList.eq("send_staff_id", send_staff);
+			if (!(params.get("selectName2_2")[0].equals(""))){
+				Staff staff = Staff.find.where().eq("staff_name",params.get("selectName2_2")[0]).findUnique();
+				sqlList=sqlList.eq("send_staff_id", staff.staff_id);
 			}
 
-//			if(params.get("get_depart")[0]!=null){
-//				int get_depart=Integer.parseInt(params.get("get_depart")[0]);
-//				a=a.eq("get_depart",get_depart);
-//			}
-
-			if (!(params.get("get_staff")[0].equals(""))){
-				int get_staff=Integer.parseInt(params.get("get_staff")[0]);
-				sqlList=sqlList.eq("get_staff_id",get_staff);
+			if (!(params.get("selectName1_2")[0].equals(""))){
+				String send_staff=params.get("selectName1_2")[0];
+				Staff staff2 = Staff.find.where().eq("staff_name",params.get("selectName1_2")[0]).findUnique();
+				sqlList=sqlList.eq("get_staff_id", staff2.staff_id);
 			}
 
 			if (!(params.get("helped_date")[0].equals(""))){

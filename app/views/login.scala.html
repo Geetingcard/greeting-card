@@ -14,6 +14,7 @@
     @if(loginForm.hasGlobalErrors) {
     <p class="error">
         @loginForm.globalError.message
+        <meta http-equiv="REFRESH" content="3">
     </p>
     }
     @inputText(loginForm("name"))

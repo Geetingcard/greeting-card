@@ -1,12 +1,13 @@
 package controllers;
 
-import models.*;
-
-import play.data.Form;
-import play.mvc.*;
-import views.html.authentication.*;
-
 import java.util.List;
+
+import models.Card;
+import models.Staff;
+import play.data.Form;
+import play.mvc.Controller;
+import play.mvc.Result;
+import views.html.authentication.index;
 
 public class Authentication extends Controller {
 	public static class Login {
@@ -42,14 +43,14 @@ public class Authentication extends Controller {
 			return badRequest(index.render(form));
 		} else {
 
-			List<Card> cardList = Card.find.all();
+			List<Card> cardList = Card.find.where().orderBy("helped_date desc").findList();
 			List<Staff> staffList = Staff.find.all();
 
 
 			Login login = form.get();
 			Staff staff_log = Staff.find.where().eq("staff_code",login.usercode).findUnique();
 			String username = staff_log.staff_name;
-			List<Card> mycardList = Card.find.where().eq("get_staff_id",staff_log.staff_id).findList();
+			List<Card> mycardList = Card.find.where().eq("get_staff_id",staff_log.staff_id).orderBy("helped_date desc").findList();
 			session("login", login.usercode);
 //			return ok("ようこそ " + username + " さん!!");
 			return ok(views.html.mypage.render(cardList,staffList,username,mycardList));
@@ -58,13 +59,12 @@ public class Authentication extends Controller {
 
 	public static Result mypage() {
 		if (session("login") != null) {
-			List<Card> cardList = Card.find.all();
+			List<Card> cardList = Card.find.where().orderBy("helped_date desc").findList();
 			List<Staff> staffList = Staff.find.all();
 			Staff staff_log2 = Staff.find.where().eq("staff_code",session("login")).findUnique();
 			String username2 = staff_log2.staff_name;
-			List<Card> mycardList2 = Card.find.where().eq("get_staff_id",staff_log2.staff_id).findList();
+			List<Card> mycardList2 = Card.find.where().eq("get_staff_id",staff_log2.staff_id).orderBy("helped_date desc").findList();
 			return ok(views.html.mypage.render(cardList,staffList,username2,mycardList2));
-
 		}
 		return ok(index.render(loginForm));
 	}

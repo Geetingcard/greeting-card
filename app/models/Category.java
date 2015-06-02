@@ -2,6 +2,7 @@ package models;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -17,7 +18,7 @@ public class Category extends Model {
 	@NotNull
 	public String category_name;
 
-	@OneToMany
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "category")
 	public List<Card> cards= new ArrayList<Card>();
 
 	public static Finder<Long, Category> find = new Finder<Long, Category>(

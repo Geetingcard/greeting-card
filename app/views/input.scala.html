@@ -1,25 +1,39 @@
-@(departmentList:List[Department],categoryList:List[Category])
+@(departmentList:List[Department],categoryList:List[Category],staffList:List[Staff])
 
 
 <html lang="jp">
 <head>
 <link rel="stylesheet" type="text/css" href="@routes.Assets.at("stylesheets/main.css")" media="all" />
+<script type = "text/javascript">
+function functionName()
+{
+var select1 = document.forms.formName.selectName1; //変数select1を宣言
+var select2 = document.forms.formName.selectName2; //変数select2を宣言
+var num = 0;
+select2.options.length = 0; // 選択肢の数がそれぞれに異なる場合、これが重要
+
+		@for(sta <- staffList){
+			if (select1.options[select1.selectedIndex].value == "@sta.department.department_id"){
+				select2.options[num] = new Option("@sta.staff_name");
+				num++;
+			}
+		}
+}
+</script>
 </head>
-<body>
+<body  onLoad="functionName()"">
 			<h1 align="center">感謝カード入力画面</h1>
 			<table border="2" width="50%" align="center">
 
 			<td align="center">
 				<p></p>
-				<form action="@routes.Input.createCard()" method="POST">
-					&nbsp&nbsp助けられた人&nbsp コード: <input type="text" name="get_staff_id" />&nbsp&nbsp&nbsp&nbsp&nbsp
-					所属部署名:
-					<Select name="dep">
-					@for(depart <- departmentList) {
-						<option value="@depart.department_id">@depart.department_name</oprion>
-					}
-					</Select><br>
-					<p></p>
+				<form name="formName" action="@routes.Input.createCard()" method="POST">
+					&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp部署：<select name = "selectName1" onChange="functionName()">
+       @for(dep <- departmentList) {
+       <option value="@dep.department_id" >@dep.department_name</option>
+       }
+</select>
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp感謝された人：<select name = "selectName2"></select><br>
 					&nbsp&nbspカテゴリ:
 					<SELECT name="category_id">
 					@for(cate <- categoryList){
@@ -50,9 +64,8 @@
 			</td>
 		</tr>
 	</table>
-<br></br>
-<table align="right">
-<tr><td><a href="@routes.Authentication.mypage()">マイページに戻る</a></td></tr>
+	<table align="right">
+<tr><td><a href="/mypage">マイページに戻る</a></td></tr>
 </table>
 </body>
 </html>
