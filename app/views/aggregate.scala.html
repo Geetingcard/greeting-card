@@ -1,10 +1,10 @@
 @(cardList: List[Card],departmentList: List[Department],staffList: List[Staff],categoryList: List[Category],staffcnt: Integer)
 <link rel="stylesheet" type="text/css" href="@routes.Assets.at("stylesheets/main.css")" media="all" />
-
+<h1 align="center">感謝カード集計</h1>
 @if(cardList.isEmpty()) {
 	Card は一件もありません
 } else {
-<form action="@routes.Aggregate.indexsearch()" method="POST">>
+<form action="@routes.Aggregate.indexsearch()" method="POST">
 <div style="height:50px; width:100%; border:#000000 solid 3px;">
 </SELECT>
 	感謝した部署：

@@ -5,6 +5,11 @@
 
 @if(cardList.isEmpty()) {
 	Card は一件もありません
+
+	<br></br>
+<table align="right">
+<tr><td><a href="@routes.Search.search()">検索に戻る</a></td></tr>
+</table>
 } else {
 <form action="@routes.Search.indexsearch()" method="POST">
 <div align="center" style="height:45px; width:100%; border:#000000 solid 2px;">
